@@ -10,29 +10,29 @@ clear ; close all; clc
 data = load('ex2data1.txt');
 X = data(:, [1, 2]); y = data(:, 3);
 
-data
-X
+%data
+%X
 
 
 
 %  Setup the data matrix appropriately, and add ones for the intercept term
 [m, n] = size(X);
-[m, n]
+%[m, n]
 % Add intercept term to x and X_test
 X = [ones(m, 1) X];
-X
+%X
 % Initialize fitting parameters
 initial_theta = zeros(n + 1, 1);
-initial_theta
-
+%initial_theta
+%y
 % Compute and display initial cost and gradient
-%[cost, grad] = costFunction(initial_theta, X, y);
+[cost, grad] = costFunction(initial_theta, X, y);
 
-%fprintf('Cost at initial theta (zeros): %f\n', cost);
-%fprintf('Gradient at initial theta (zeros): \n');
-%fprintf(' %f \n', grad);
+fprintf('Cost at initial theta (zeros): %f\n', cost);
+fprintf('Gradient at initial theta (zeros): \n');
+fprintf(' %f \n', grad);
 
-%fprintf('\nProgram paused. Press enter to continue.\n');
-%pause;
+fprintf('\nProgram paused. Press enter to continue.\n');
+pause;
 
-fprintf('sigmoid-------------------------------------');
+
