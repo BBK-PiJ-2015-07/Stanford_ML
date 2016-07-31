@@ -71,53 +71,16 @@ a2 = sigmoid(z2);
 % add a2 bias units
 a2 = [ones(m,1) a2];
 z3 = a2 * Theta2';
+a3 = H = sigmoid(z3);
 
-%[max_vals, H] = max(z3, [], 2); 
-
-
-fprintf("\nX size after adding bias -------------- \n")
-size(X)
-fprintf("\Theta1 size -------------- \n")
-size(Theta1)
-fprintf("\Theta2 size -------------- \n")
-size(Theta2)
-
-fprintf("\nz2 size -------------- \n")
-size(z2)
-fprintf("\na2 size after adding bias -------------- \n")
-size(a2)
-
-fprintf("\nz3 size -------------- \n")
-size(z3)
-a3 = H = sigmoid(z3) >= 0.5;
-
-
-fprintf("\na3  -------------- \n")
-size(a3)
-fprintf("\nH  -------------- \n")
-size(H)
-fprintf("\ny  -------------- \n")
-size(y)
-
+% recode labels in y. (Original values were 1, 2, ... , 10. For training a neural network
+% the labels need to be converted to vectors containing only values of 0 and 1.)
 y_Label_Values = y;
 y = zeros(m, num_labels);
-
 y(sub2ind(size(y), 1:size(y_Label_Values, 1), y_Label_Values')) = 1;
 
-fprintf("\n y_Label_Values(2000)");
-y_Label_Values(2000)
-fprintf("\ny(2000)");
-y(2000, :)
-
-
-
-size(y)
-
- 
-%J = sum(-y' * log(H) - (1 - y) * log(1 - H))
-
-
-
+%Unregularised cost function
+J = sum(sum(-y .* log(H) - (1 - y) .* log(1 - H))) / m;
 
 
 
