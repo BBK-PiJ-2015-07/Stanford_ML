@@ -63,7 +63,6 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
-
 X = [ones(m,1) X]; % X = a1 (input layer activation)
 z2 = X * Theta1';
 a2 = sigmoid(z2);
@@ -82,17 +81,11 @@ y(sub2ind(size(y), 1:size(y_Label_Values, 1), y_Label_Values')) = 1;
 %Unregularised cost function
 J = sum(sum(-y .* log(H) - (1 - y) .* log(1 - H))) / m;
 
-
-
-
-
-
-
-
-
-
-
-
+%Regularised cost function
+theta1_reg = Theta1(:, 2:end);
+theta2_reg = Theta2(:, 2:end);
+regularization_term = (lambda/(2 * m)) * (sum(sum(theta1_reg.^2)) + sum(sum(theta2_reg.^2)));
+J = J + regularization_term;
 
 
 % -------------------------------------------------------------
