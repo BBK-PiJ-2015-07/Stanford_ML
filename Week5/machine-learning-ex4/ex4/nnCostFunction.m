@@ -85,8 +85,34 @@ J = sum(sum(-y .* log(H) - (1 - y) .* log(1 - H))) / m;
 theta1_reg = Theta1(:, 2:end);
 theta2_reg = Theta2(:, 2:end);
 regularization_term = (lambda/(2 * m)) * (sum(sum(theta1_reg.^2)) + sum(sum(theta2_reg.^2)));
-J = J + regularization_term;
+J += regularization_term;
 
+%Backpropagation
+Delta1 = 0;
+Delta2 = 0;
+
+for t = 1 : m
+	a1 = X(t,:)';
+	z2 = Theta1 * a1;
+	a2 = [1; sigmoid(z2)];
+		
+	z3 = Theta2 * a2;
+	a3 = sigmoid(z3);
+	
+	delta3 = a3 - y(t,:)';
+	
+	delta2 = (theta2_reg' * delta3) .* sigmoidGradient(z2);
+	
+	Delta2 += delta3 * a2';
+	Delta1 += delta2 * a1';	
+end
+
+Theta1_grad = (1 / m) * Delta1;
+Theta2_grad = (1 / m) * Delta2;
+
+%Regularised gradients
+Theta1_grad(:, 2:end) += (lambda/m) * theta1_reg;
+Theta2_grad(:, 2:end) += (lambda/m) * theta2_reg;
 
 % -------------------------------------------------------------
 
