@@ -58,7 +58,7 @@ for i = 1:m
 	X_subset = X(1:i,:);
 	y_subset = y(1:i);	
 	theta = trainLinearReg(X_subset, y_subset, lambda);
-	error_train(i) = linearRegCostFunction(X_subset, y_subset, theta, lambda_null)(1);
+	error_train(i) = linearRegCostFunction(X_subset, y_subset, theta, lambda_null);
 	error_val(i) = linearRegCostFunction(Xval, yval, theta, lambda_null);
 end
 
