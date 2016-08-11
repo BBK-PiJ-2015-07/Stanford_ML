@@ -219,28 +219,9 @@ end
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %% =========== Part 9: Learning Curve for Random training and cross validation sets =============
 
 lambda = 0.01;
-numberOfExamples = 6;
-learningCurveRand(X, y, Xval, yval, lambda, numberOfExamples)
-
-
-
-
+learningCurveRand(X_poly, y, X_poly_val, yval, lambda)
 pause;
 
