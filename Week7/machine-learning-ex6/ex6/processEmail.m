@@ -97,16 +97,23 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
+	for i = 1:length(vocabList)
+		if(strcmp(str, vocabList(i))  == 1)
+			word_indices = [word_indices; i];
+		end
+	end
+	
+	%Other elegant solutions	
+	%positions = find(strcmp(vocabList, str)); % 0 or 1 lenght
+	%word_indices = [word_indices ; positions];
+	%
+	%OR
+	%[found, index] = ismember(str, vocabList);
+	%if (found)
+	%	word_indices = [word_indices; index];
+	%end;
 
-
-
-
-
-
-
-
-
-    % =============================================================
+   % =============================================================
 
 
     % Print to screen, ensuring that the output lines are not too long
