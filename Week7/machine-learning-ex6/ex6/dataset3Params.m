@@ -24,19 +24,25 @@ sigma = 0.3;
 %
 
 range = [0.01; 0.03; 0.1; 0.3; 1; 3; 10; 30];
+minError = intmax;
+
 
 for i = 1:length(range)
-	C = range(i);
+	currentC = range(i);
 	for j = 1: length(range)
-		sigma = range(j);
+		currentSigma = range(j);
 		
-		%TODO
-		
-		
-		
+		%x1 = [1 2 1]; x2 = [0 4 -1];
+		model= svmTrain(X, y, currentC, @(x1, x2) gaussianKernel(x1, x2, currentSigma));
+		predictions = svmPredict(model, Xval);
+		error = mean(double(predictions ~= yval));
+		if (error < minError)
+			minError = error;
+			C = currentC;
+			sigma = currentSigma;
+		end
 	end
 end
-
 
 
 
