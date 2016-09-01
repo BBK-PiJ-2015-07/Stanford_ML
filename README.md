@@ -1,4 +1,4 @@
-# Solutions for the programming exercises in Stanford University's Machine Learning course hosted on Coursera. 
+# Machine Learning - Stanford University (Coursera) - Programming exercise solutions
 
 Modules:  
 
